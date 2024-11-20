@@ -1,0 +1,204 @@
+
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Ventas</title>
+
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cabecera */
+        header {
+            background-color: #3F51B5;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Centrado de contenido dentro de la cabecera */
+        header .logo {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex: 2;
+        }
+
+        /* Menú principal */
+        .menu {
+            position: relative;
+        }
+
+        /* Enlaces del menú */
+        .menu > a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Submenús */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FFFFFF;
+            color: #000;
+            min-width: 200px;
+            border: 1px solid #DDD;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        /* Enlaces de los submenús */
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .submenu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Mostrar submenús al pasar el mouse */
+        .menu:hover .submenu {
+            display: block;
+        }
+
+        /* Espaciado principal para el contenido */
+        main {
+            margin-top: 100;
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Sistema de Gestión de Ventas</div>
+    <nav>
+        
+
+
+
+
+
+        <!-- Grupo: MANTENEDOR -->
+        <div class="menu">
+            <a href="#mantenedor">MANTENEDOR</a>
+            <div class="submenu">
+                <a href="../Rol/Crear.html">Rol</a>
+                <a href="../Permisos/Crear.html">Asignar Permisos</a>
+                <a href="../Usuario/Crear.html">Usuarios</a>
+                <a href="../Categoria/Crear.html">Categorias</a>
+                <a href="../Producto/Crear.html">Productos</a>
+            </div>
+        </div>
+
+        <!-- Grupo: CLIENTE -->
+        <div class="menu">
+            <a href="#cliente">CLIENTES</a>
+            <div class="submenu">
+                <a href="../Cliente/Crear.html">Clientes</a>
+            </div>
+        </div>
+
+        <!-- Grupo: COMPRAS -->
+        <div class="menu">
+            <a href="#compras">COMPRAS</a>
+            <div class="submenu">
+                <a href="../Proveedor/Crear.html">Proveedores</a>
+                <a href="../Producto/Asignar.html">Asignar Producto a Tienda</a>
+                <a href="../Compra/Crear.html">Registrar Compra</a>
+                <a href="../Compra/Consultar.html">Consultar Compra</a>
+            </div>
+        </div>
+
+        <!-- Grupo: COMPRAS -->
+        <div class="menu">
+            <a href="#tienda">TIENDA</a>
+            <div class="submenu">
+                <a href="../Tienda/Crear.html">Tiendas</a>
+            </div>
+        </div>
+
+                <!-- Grupo: VENTAS -->
+        <div class="menu">
+            <a href="#ventas">VENTAS</a>
+            <div class="submenu">
+                <a href="../Venta/Crear.html">Registrar Venta</a>
+                <a href="../Venta/Consultar.html">Consultar Venta</a>
+            </div>
+        </div>
+
+                        <!-- Grupo: COTIZACIONES -->
+        <div class="menu">
+            <a href="#cotizaciones">COTIZACIONES</a>
+            <div class="submenu">
+                <a href="../Cotizacion/Crear.html">Registrar Cotización</a>
+                <a href="../Cotizacion/Consultar.html">Consultar Cotización</a>
+            </div>
+        </div>
+
+        <!-- Grupo: REPORTES -->
+        <div class="menu">
+            <a href="#reportes">REPORTES</a>
+            <div class="submenu">
+                <a href="../Reporte/Producto.html">Productos por Tienda</a>
+                <a href="../Reporte/Ventas.html">Ventas</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    // Obtén todos los elementos del menú
+    const menus = document.querySelectorAll('.menu');
+
+    // Agrega un evento de clic a cada uno de ellos
+    menus.forEach(menu => {
+        menu.addEventListener('click', function() {
+            // Primero oculta todos los submenús
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.style.display = 'none';
+            });
+
+            // Luego muestra el submenú del menú seleccionado
+            const submenu = this.querySelector('.submenu');
+            if (submenu) {
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

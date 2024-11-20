@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Proveedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<style>
+        /* Estilos básicos */
+        body {
+      
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cabecera */
+        header {
+            background-color: #3F51B5;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Centrado de contenido dentro de la cabecera */
+        header .logo {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex: 2;
+        }
+
+        /* Menú principal */
+        .menu {
+            position: relative;
+        }
+
+        /* Enlaces del menú */
+        .menu > a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Submenús */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FFFFFF;
+            color: #000;
+            min-width: 200px;
+            border: 1px solid #DDD;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        /* Enlaces de los submenús */
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .submenu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Mostrar submenús al pasar el mouse */
+        .menu:hover .submenu {
+            display: block;
+        }
+
+        /* Espaciado principal para el contenido */
+        main {
+            margin-top: 100;
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   <div class="logo" onclick="location.href='../Home/Index.html'" style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
+    <img src="../Imagenes/logo.png" alt="Logo" style="height: 50px;">
+    <span>Sistema de Gestión de Ventas</span>
+</div>
+    <nav>
+        
+
+
+
+
+
+        <!-- Grupo: MANTENEDOR -->
+        <div class="menu">
+            <a href="#mantenedor">MANTENEDOR</a>
+            <div class="submenu">
+                <a href="../Rol/Crear.html">Rol</a>
+                <a href="../Permisos/Crear.html">Asignar Permisos</a>
+                <a href="../Usuario/Crear.html">Usuarios</a>
+                <a href="../Categoria/Crear.html">Categorias</a>
+                <a href="../Producto/Crear.html">Productos</a>
+            </div>
+        </div>
+
+        <!-- Grupo: CLIENTE -->
+        <div class="menu">
+            <a href="#cliente">CLIENTES</a>
+            <div class="submenu">
+                <a href="../Cliente/Crear.html">Clientes</a>
+            </div>
+        </div>
+
+        <!-- Grupo: COMPRAS -->
+        <div class="menu">
+            <a href="#compras">COMPRAS</a>
+            <div class="submenu">
+                <a href="../Proveedor/Crear.html">Proveedores</a>
+                <a href="../Producto/Asignar.html">Asignar Producto a Tienda</a>
+                <a href="../Compra/Crear.html">Registrar Compra</a>
+                <a href="../Compra/Consultar.html">Consultar Compra</a>
+            </div>
+        </div>
+
+        <!-- Grupo: COMPRAS -->
+        <div class="menu">
+            <a href="#tienda">TIENDA</a>
+            <div class="submenu">
+                <a href="../Tienda/Crear.html">Tiendas</a>
+            </div>
+        </div>
+
+                <!-- Grupo: VENTAS -->
+        <div class="menu">
+            <a href="#ventas">VENTAS</a>
+            <div class="submenu">
+                <a href="../Venta/Crear.html">Registrar Venta</a>
+                <a href="../Venta/Consultar.html">Consultar Venta</a>
+            </div>
+        </div>
+
+                        <!-- Grupo: COTIZACIONES -->
+        <div class="menu">
+            <a href="#cotizaciones">COTIZACIONES</a>
+            <div class="submenu">
+                <a href="../Cotizacion/Crear.html">Registrar Cotización</a>
+                <a href="../Cotizacion/Consultar.html">Consultar Cotización</a>
+            </div>
+        </div>
+
+        <!-- Grupo: REPORTES -->
+        <div class="menu">
+            <a href="#reportes">REPORTES</a>
+            <div class="submenu">
+                <a href="../Reporte/Producto.html">Productos por Tienda</a>
+                <a href="../Reporte/Ventas.html">Ventas</a>
+            </div>
+        </div>
+    </nav>
+            <!-- Logo de usuario, nombre y opción de cerrar sesión -->
+<div class="user-info" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 5px; margin-left: 20px;">
+    <!-- Imagen del usuario -->
+    <img src="../Imagenes/perfil.png" alt="Usuario" style="height: 40px; border-radius: 50%; cursor: pointer;" onclick="toggleLogoutMenu()">
+
+    <!-- Nombre del usuario -->
+    <span id="nombreUsuario" style="font-size: 14px; font-weight: bold; color: white;">RNOLASCO</span>
+
+    <!-- Menú de cerrar sesión (inicialmente oculto) -->
+    <div id="logoutMenu" style="display: none; position: absolute; top: 60px; background-color: white; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); padding: 10px; border-radius: 5px; text-align: center;">
+        <a href="../index.html" style="text-decoration: none; color: black; font-size: 14px;">Cerrar Sesión</a>
+    </div>
+</div>
+</header>
+
+<br>
+<body>
+
+
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#"></a></li>
+               
+            </ol>
+        </nav>
+
+        <div class="card border-info">
+            <div class="card-header bg-info text-white">
+                Lista Proveedores
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-sm btn-success" onclick="abrirPopUpForm(null)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>  Agregar Nuevo
+                        </button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+                        <table id="tbdata" class="table table-striped table-bordered nowrap compact" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>RUC</th>
+                                    <th>Razón Social</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Dirección</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="FormModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Proveedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <input id="txtid" value="0" type="hidden" />
+                        <div class="form-group row">
+                            <label for="txtRuc" class="col-sm-2 col-form-label col-form-label-sm">RUC <span class="error"></span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" id="txtRuc" name="RUC">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtRazonSocial" class="col-sm-2 col-form-label col-form-label-sm">Razón Social <span class="error"></span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" id="txtRazonSocial" name="RazonSocial">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtTelefono" class="col-sm-2 col-form-label col-form-label-sm">Telefono <span class="error"></span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" id="txtTelefono" name="Telefono">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtCorreo" class="col-sm-2 col-form-label col-form-label-sm">Correo <span class="error"></span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" id="txtCorreo" name="Correo">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="txtDireccion" class="col-sm-2 col-form-label col-form-label-sm">Dirección <span class="error"></span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control form-control-sm" id="txtDireccion" name="Direccion">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="cboEstado" class="col-sm-2 col-form-label col-form-label-sm">Activo</label>
+                            <div class="col-sm-10">
+                                <select class="form-control form-control-sm" id="cboEstado" name="Activo">
+                                    <option value="1">Activo</option>
+                                    <option value="0">No Activo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button id="btnGuardarCambios" type="button" class="btn btn-sm btn-primary" onclick="guardarProveedor()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        // Función para abrir el modal para agregar o editar proveedor
+        function abrirPopUpForm(id) {
+            if (id === null) {
+                // Limpiar el formulario y abrir para nuevo
+                $('#form')[0].reset();
+                $('#txtid').val(0);
+            } else {
+                // Cargar datos del proveedor seleccionado en el formulario
+                cargarProveedor(id);
+            }
+            $('#FormModal').modal('show');
+        }
+
+        // Función para cargar los datos del proveedor a editar
+        function cargarProveedor(id) {
+            // Suponiendo que tienes una API para obtener un proveedor por ID
+            $.ajax({
+                url: `/api/proveedores/${id}`,
+                method: 'GET',
+                success: function(data) {
+                    $('#txtid').val(data.id);
+                    $('#txtRuc').val(data.ruc);
+                    $('#txtRazonSocial').val(data.razonSocial);
+                    $('#txtTelefono').val(data.telefono);
+                    $('#txtCorreo').val(data.correo);
+                    $('#txtDireccion').val(data.direccion);
+                    $('#cboEstado').val(data.activo);
+                }
+            });
+        }
+
+        // Función para guardar el proveedor
+        function guardarProveedor() {
+            var proveedor = {
+                id: $('#txtid').val(),
+                ruc: $('#txtRuc').val(),
+                razonSocial: $('#txtRazonSocial').val(),
+                telefono: $('#txtTelefono').val(),
+                correo: $('#txtCorreo').val(),
+                direccion: $('#txtDireccion').val(),
+                activo: $('#cboEstado').val()
+            };
+
+            // Validación simple
+            if (!proveedor.ruc || !proveedor.razonSocial || !proveedor.telefono) {
+                alert("Por favor complete todos los campos requeridos.");
+                return;
+            }
+
+            // Guardar el proveedor
+            $.ajax({
+                url: '/api/proveedores',  // Cambia esta URL a la API que maneja la creación y actualización de proveedores
+                method: 'POST',
+                data: proveedor,
+                success: function() {
+                    $('#FormModal').modal('hide');
+                    alert('Proveedor guardado con éxito');
+                    cargarProveedores();
+                }
+            });
+        }
+
+        // Función para cargar los proveedores en la tabla
+        function cargarProveedores() {
+            $.ajax({
+                url: '/api/proveedores',  // Cambia esta URL para obtener los proveedores
+                method: 'GET',
+                success: function(data) {
+                    var rows = '';
+                    data.forEach(function(proveedor) {
+                        rows += `<tr>
+                                    <td>${proveedor.ruc}</td>
+                                    <td>${proveedor.razonSocial}</td>
+                                    <td>${proveedor.telefono}</td>
+                                    <td>${proveedor.correo}</td>
+                                    <td>${proveedor.direccion}</td>
+                                    <td>${proveedor.activo ? 'Activo' : 'No Activo'}</td>
+                                    <td><button class="btn btn-sm btn-primary" onclick="abrirPopUpForm(${proveedor.id})">Editar</button></td>
+                                  </tr>`;
+                    });
+                    $('#tbdata tbody').html(rows);
+                }
+            });
+        }
+
+        // Cargar proveedores al cargar la página
+        $(document).ready(function() {
+            cargarProveedores();
+        });
+    </script>
+       <!-- Pie de página -->
+<footer style="background-color: #3F51B5; color: white; text-align: center; padding: 15px; position: fixed; bottom: 0; width: 100%; font-size: 14px;">
+    <p>Todos los derechos reservados &copy; 2024 | 
+        <a href="https://www.upn.edu.pe/carreras-gente-que-trabaja/ingenieria-sistemas-computacionales" target="_blank" style="color: #FFC107; text-decoration: none;">Ingeniería de Sistemas Computacionales</a>
+    </p>
+</footer>
+</body>
+</html>
